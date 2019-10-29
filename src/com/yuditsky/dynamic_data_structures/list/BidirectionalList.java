@@ -90,7 +90,7 @@ public class BidirectionalList<T> implements Iterable<T> {
             temp = temp.next;
         }
         return result.toString();
-    } //////////////////////////////////////////////////////////////////////
+    }
 
     public void deleteLast() {
         if (head != null) {

@@ -26,8 +26,8 @@ public class Tree<T> implements Iterable<T> {
 
     private Node<T> root;
 
-    public void add(T inf) {
-        root = add(root, inf);
+    public void add(T data) {
+        root = add(root, data);
     }
 
     private Node<T> add(Node<T> node, T data) {
@@ -103,17 +103,17 @@ public class Tree<T> implements Iterable<T> {
         }
     }
 
-    private Node<T> find(Node<T> node, T inf) {
+    private Node<T> find(Node<T> node, T data) {
         if (node == null) {
             return null;
         }
-        if (inf.equals(node.data)) {
+        if (data.equals(node.data)) {
             return node;
-        } else if (((Comparable) inf).compareTo(node.data) < 0) {
-            node = find(node.left, inf);
+        } else if (((Comparable) data).compareTo(node.data) < 0) {
+            node = find(node.left, data);
             return node;
         } else {
-            node = find(node.right, inf);
+            node = find(node.right, data);
             return node;
         }
     }
@@ -139,15 +139,6 @@ public class Tree<T> implements Iterable<T> {
 
     public boolean find(T inf) {
         return find(root, inf) != null;
-    }
-
-    public T findTheElementBefore(T inf) {
-        Node<T> result = root;
-        result = findBefore(result, inf);
-        if (result != null) {
-            return result.data;
-        }
-        return null;
     }
 
     private class TreeIterator implements Iterator<T> {
@@ -198,12 +189,5 @@ public class Tree<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new TreeIterator();
-    }
-
-    private Node<T> findMax(Node<T> node) {
-        while (node.right != null) {
-            node = node.right;
-        }
-        return node;
     }
 }
